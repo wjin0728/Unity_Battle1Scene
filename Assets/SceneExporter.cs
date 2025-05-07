@@ -8,6 +8,7 @@ using UnityEditor.SearchService;
 using Unity.VisualScripting;
 using Unity.Mathematics;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UI;
 
 public class MyBinaryWriter
 {
@@ -426,6 +427,7 @@ public class MyBinaryWriter
             MeshRenderer meshRenderer = current.gameObject.GetComponent<MeshRenderer>();
             MeshFilter meshFilter = current.gameObject.GetComponent<MeshFilter>();
             SkinnedMeshRenderer skinnedMeshRenderer = current.gameObject.GetComponent<SkinnedMeshRenderer>();
+            CanvasRenderer canvasRenderer = current.gameObject.GetComponent<CanvasRenderer>();
 
             if (skinnedMeshRenderer)
             {
@@ -503,6 +505,18 @@ public class MyBinaryWriter
             WriteFloat(light.intensity);
             WriteFloat(light.innerSpotAngle);
             WriteFloat(light.spotAngle);
+        }
+        Image image;
+        if (current.TryGetComponent<Image>(out image))
+        {
+            WriteString("<Image>:");
+            WriteTextureName(image.mainTexture);
+            WriteColor(image.color);
+            Vector2 canvasSize = new Vector2(1920, 1080);
+            GameObject root = current.root.gameObject;
+            Bounds rectBound = RectTransformUtility.CalculateRelativeRectTransformBounds(root.transform, current);
+            WriteVector(new Vector2(rectBound.size.x, rectBound.size.y));
+            WriteVector(rectBound.center/ (canvasSize / 2));
         }
 
         return bounds;
@@ -628,6 +642,8 @@ public class SingleObjectExporter
 
 public class SceneObjectExporter
 {
+    
+
     [MenuItem("Scene/Export Scene")]
     static void ExportAllObjects()
     {
@@ -862,6 +878,7 @@ public class SceneObjectExporter
         Dictionary<string, Mesh> sceneMeshes = new Dictionary<string, Mesh>();
         Dictionary<string, Material> sceneMaterials = new Dictionary<string, Material>();
         Dictionary<string, Mesh> sceneSkinnedMeshes = new Dictionary<string, Mesh>();
+        List<string> images = new List<string>();
 
         //씬 내 공유 리소스 탐색
         foreach (GameObject obj in allObjects)
@@ -938,6 +955,20 @@ public class SceneObjectExporter
                     }
                 }
             }
+
+            Image image = obj.GetComponent<Image>();
+            if (image)
+            {
+                Texture texture = image.mainTexture;
+                if (texture != null)
+                {
+                    string texName = texture.name;
+                    if (!images.Contains(texName))
+                    {
+                        images.Add(texName);
+                    }
+                }
+            }
         }
         //리소스 추출
         writer.WriteInteger(sceneMeshes.Count);
@@ -957,8 +988,33 @@ public class SceneObjectExporter
             writer.WriteMaterial(material);
         }
 
+        writer.WriteInteger(images.Count);
+        foreach (string image in images)
+        {
+            writer.WriteString(image);
+        }
 
-        int a = 0;
+
         Debug.Log($"리소스 추출 완료");
+    }
+
+    [MenuItem("Scene/Export Canvas")]
+    static void ExportSelectedCanvas()
+    {
+        GameObject selectedObject = Selection.activeGameObject;
+        Canvas canvas = selectedObject.GetComponent<Canvas>();
+        if (canvas == null)
+        {
+            Debug.LogError("No UI Object selected.");
+            return;
+        }
+        string filePath = EditorUtility.SaveFilePanel("Save Canvas bin", "Assets", selectedObject.name + ".bin", "bin");
+        if (string.IsNullOrEmpty(filePath)) return;
+        MyBinaryWriter binaryWriter = new MyBinaryWriter(filePath);
+
+        binaryWriter.WriteObjectName(canvas);
+        binaryWriter.WriteObject(selectedObject, false);
+
+        Debug.Log($"UI 추출 완료");
     }
 }
