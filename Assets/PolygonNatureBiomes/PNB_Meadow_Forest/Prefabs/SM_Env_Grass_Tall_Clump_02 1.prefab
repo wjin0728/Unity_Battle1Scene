@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8831765510708956765}
-  - component: {fileID: 7563061747544369577}
+  - component: {fileID: 7394055996426570441}
+  - component: {fileID: 2003574402279123039}
   m_Layer: 0
   m_Name: SM_Env_Grass_Tall_Clump_02 1
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -29,77 +30,24 @@ Transform:
   m_LocalPosition: {x: 10.439484, y: 4.621171, z: 13.591086}
   m_LocalScale: {x: 2.136601, y: 2.136601, z: 2.136601}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3535633286411556695}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &7563061747544369577
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2740271833374821242}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.039348125, y: 0.50422627, z: 0.047007322}
-  m_Size: 1.7851174
-  m_FadeMode: 1
-  m_AnimateCrossFading: 1
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.009758206
-    fadeTransitionWidth: 0.1
-    renderers:
-    - renderer: {fileID: 2183963283684324024}
-  m_Enabled: 0
---- !u!1 &5983675276087987375
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3535633286411556695}
-  - component: {fileID: 5608991242137086128}
-  - component: {fileID: 2183963283684324024}
-  m_Layer: 0
-  m_Name: SM_Env_Grass_Tall_Clump_02_LOD0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &3535633286411556695
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5983675276087987375}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8831765510708956765}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5608991242137086128
+--- !u!33 &7394055996426570441
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5983675276087987375}
+  m_GameObject: {fileID: 2740271833374821242}
   m_Mesh: {fileID: 2145506316930077182, guid: 7588533a2a5d31e448e9b29fd45abb52, type: 3}
---- !u!23 &2183963283684324024
+--- !u!23 &2003574402279123039
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5983675276087987375}
+  m_GameObject: {fileID: 2740271833374821242}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

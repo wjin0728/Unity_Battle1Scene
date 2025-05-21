@@ -775,6 +775,9 @@ Shader "SyntyStudios/WaterShader"
 				float4 fetchOpaqueVal100 = float4( SHADERGRAPH_SAMPLE_SCENE_COLOR( ( (ase_grabScreenPosNorm).xy + (( UnpackNormalScale( tex2D( _DistortionMap, panner45 ), 1.0f ) * _Distortion )).xy ) ), 1.0 );
 				float4 Refraction107 = fetchOpaqueVal100;
 				float4 lerpResult121 = lerp( temp_output_175_0 , Refraction107 , temp_output_175_0);
+
+				return float4(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ).xxx, 1);
+
 				float2 temp_output_14_0 = (WorldPosition).xz;
 				float2 panner166 = ( 0.1 * _Time.y * float2( 1,0 ) + temp_output_14_0);
 				float simplePerlin3D44 = snoise( float3( ( panner166 * 1.5 ) ,  0.0 ) );
@@ -785,6 +788,7 @@ Shader "SyntyStudios/WaterShader"
 				float foam62 = ( saturate( pow( ( distanceDepth170 + _FoamShoreline ) , _FoamFalloff ) ) * tex2D( _Foam_Texture, panner37 ).r );
 				float4 foamNoise114 = saturate( ( ( _FoamColor * ( 1.0 - step( ( simplePerlin3D44 + simplePerlin3D43 ) , ( distanceDepth170 * _FoamSpread ) ) ) ) + ( _FoamColor * foam62 ) ) );
 				float4 lerpResult141 = lerp( lerpResult121 , float4(1,1,1,0) , foamNoise114);
+
 				float4 temp_cast_3 = 0;
 				float4 temp_cast_4 = 0;
 				float2 temp_cast_5 = (_WaveSpeed).xx;
@@ -811,9 +815,10 @@ Shader "SyntyStudios/WaterShader"
 				float2 panner28 = ( 0.1 * _Time.y * float2( -1,0 ) + temp_output_25_0);
 				float simplePerlin3D56 = snoise( float3( ( panner28 * 0.08 ) ,  0.0 ) );
 				float waveCrestNoise0182 = step( ( simplePerlin3D58 + simplePerlin3D56 ) , 0.0 );
+
 				float4 lerpResult109 = lerp( temp_cast_3 , lerpResult97 , waveCrestNoise0182);
 				float4 lerpResult116 = lerp( float4( 0,0,0,0 ) , lerpResult109 , _WaveFoamOpacity);
-				float4 waveCrestColour131 = lerpResult116;
+				float4 waveCrestColour131 = lerpResult116;	
 				float4 waterAlbedo155 = ( lerpResult141 + waveCrestColour131 );
 				
 				float2 temp_cast_12 = (_RippleSpeed).xx;

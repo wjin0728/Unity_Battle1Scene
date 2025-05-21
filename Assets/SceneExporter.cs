@@ -349,19 +349,21 @@ public class MyBinaryWriter
 
                 WriteTextureName("<LeafAlbedoMap>:", material.GetTexture("_LeafTex"));
                 WriteTextureName("<LeafNormalMap>:", material.GetTexture("_LeafNormalMap"));
+                WriteFloat("<LeafNormalScale>:", material.GetFloat("_LeafNormalAmount"));
                 WriteColor("<LeafAlbedoColor>:", material.GetColor("_LeafBaseColour"));
                 WriteFloat("<LeafSmoothness>:", material.GetFloat("_LeafSmoothness"));
                 WriteFloat("<LeafMetallic>:", material.GetFloat("_LeafMetallic"));
 
                 WriteTextureName("<TrunkAlbedoMap>:", material.GetTexture("_TunkTex"));
                 WriteTextureName("<TrunkNormalMap>:", material.GetTexture("_TrunkNormalMap"));
+                WriteFloat("<TrunkNormalScale>:", material.GetFloat("_TrunkNormalAmount"));
                 WriteColor("<TrunkAlbedoColor>:", material.GetColor("_TrunkBaseColour"));
                 WriteFloat("<TrunkSmoothness>:", material.GetFloat("_TrunkSmoothness"));
                 WriteFloat("<TrunkMetallic>:", material.GetFloat("_TrunkMetallic"));
 
                 break;
             case "Universal Render Pipeline/Lit":
-
+                WriteFloat("<RenderMode>:", material.GetFloat("_Surface"));
                 WriteTextureName("<AlbedoMap>:", material.GetTexture("_BaseMap"));
                 WriteColor("<AlbedoColor>:", material.GetColor("_BaseColor"));
 
@@ -369,6 +371,45 @@ public class MyBinaryWriter
                 WriteFloat("<Metallic>:", material.GetFloat("_Metallic"));
 
                 WriteTextureName("<NormalMap>:", material.GetTexture("_BumpMap"));
+                WriteTextureName("<EmissionMap>:", material.GetTexture("_EmissionMap"));
+                WriteColor("<EmissionColor>:", material.GetColor("_EmissionColor"));
+
+                break;
+            case "SyntyStudios/WaterShader":
+                WriteColor("<ShallowColour>:", material.GetColor("_ShallowColour"));
+                WriteColor("<DeepColour>:", material.GetColor("_DeepColour"));
+                WriteColor("<VeryDeepColour>:", material.GetColor("_VeryDeepColour"));
+                WriteColor("<FoamColor>:", material.GetColor("_FoamColor"));
+                WriteFloat("<Opacity>:", material.GetFloat("_Opacity"));
+                WriteFloat("<Smoothness>:", material.GetFloat("_Smoothness"));
+                WriteFloat("<FoamSmoothness>:", material.GetFloat("_FoamSmoothness"));
+                WriteFloat("<FoamShoreline>:", material.GetFloat("_FoamShoreline"));
+                WriteFloat("<FoamFalloff>:", material.GetFloat("_FoamFalloff"));
+                WriteFloat("<FoamSpread>:", material.GetFloat("_FoamSpread"));
+                WriteFloat("<OpacityFalloff>:", material.GetFloat("_OpacityFalloff"));
+                WriteFloat("<OpacityMin>:", material.GetFloat("_OpacityMin"));
+                WriteFloat("<ReflectionPower>:", material.GetFloat("_ReflectionPower"));
+                WriteFloat("<Depth>:", material.GetFloat("_Depth"));
+                WriteFloat("<NormalScale>:", material.GetFloat("_NormalScale"));
+                WriteFloat("<NormalTiling>:", material.GetFloat("_NormalTiling"));
+                WriteFloat("<NormalTiling2>:", material.GetFloat("_NormalTiling2"));
+                WriteFloat("<RippleSpeed>:", material.GetFloat("_RippleSpeed"));
+                WriteFloat("<ShallowFalloff>:", material.GetFloat("_ShallowFalloff"));
+                WriteFloat("<OverallFalloff>:", material.GetFloat("_OverallFalloff"));
+
+                WriteFloat("<WaveDirection>:", material.GetFloat("_WaveDirection"));
+                WriteFloat("<WaveWavelength>:", material.GetFloat("_WaveWavelength"));
+                WriteFloat("<WaveAmplitude>:", material.GetFloat("_WaveAmplitude"));
+                WriteFloat("<WaveSpeed>:", material.GetFloat("_WaveSpeed"));
+                WriteFloat("<WaveFoamOpacity>:", material.GetFloat("_WaveFoamOpacity"));
+                WriteFloat("<WaveNoiseAmount>:", material.GetFloat("_WaveNoiseAmount"));
+                WriteFloat("<WaveNoiseScale>:", material.GetFloat("_WaveNoiseScale"));
+
+                WriteTextureName("<RipplesNormal>:", material.GetTexture("_RipplesNormal"));
+                WriteTextureName("<RipplesNormal2>:", material.GetTexture("_RipplesNormal2"));
+                WriteTextureName("<WaveMask>:", material.GetTexture("_WaveMask"));
+                WriteTextureName("<FoamMask>:", material.GetTexture("_FoamMask"));
+
 
                 break;
             default:
@@ -416,6 +457,7 @@ public class MyBinaryWriter
 
         WriteString("<Tag>:");
         WriteString(tag);
+
         WriteTransform("<Transform>:", current);
 
         Bounds bounds = new Bounds();
@@ -459,6 +501,7 @@ public class MyBinaryWriter
                 foreach (Material mat in materials)
                 {
                     WriteObjectName(mat);
+
                 }
             }
         }
@@ -634,6 +677,57 @@ public class SingleObjectExporter
         string filePath = EditorUtility.SaveFilePanel("Save Object bin", "Assets", selectedObject.name + ".bin", "bin");
         if (string.IsNullOrEmpty(filePath)) return;
         MyBinaryWriter binaryWriter = new MyBinaryWriter(filePath);
+        Renderer[] renderers = selectedObject.GetComponentsInChildren<Renderer>();
+        MeshRenderer[] meshRenderers = selectedObject.GetComponentsInChildren<MeshRenderer>();
+        SkinnedMeshRenderer[] skinnedMeshRenderers = selectedObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        List<Mesh> Meshes = new List<Mesh>();
+        List<Mesh> SkinnedMeshes = new List<Mesh>();
+        List<Material> materials = new List<Material>();
+
+        foreach (MeshRenderer meshRenderer in meshRenderers)
+        {
+            Mesh mesh = meshRenderer.GetComponent<MeshFilter>().sharedMesh;
+            if (!Meshes.Contains(mesh))
+            {
+                Meshes.Add(mesh);
+            }
+        }
+        foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers)
+        {
+            Mesh mesh = skinnedMeshRenderer.sharedMesh;
+            if (!SkinnedMeshes.Contains(mesh))
+            {
+                SkinnedMeshes.Add(mesh);
+            }
+        }
+
+        foreach (Renderer renderer in renderers)
+        {
+            Material[] sharedMaterials = renderer.sharedMaterials;
+            foreach (Material material in sharedMaterials)
+            {
+                if (!materials.Contains(material))
+                {
+                    materials.Add(material);
+                }
+            }
+        }
+        binaryWriter.WriteInteger(Meshes.Count);
+        foreach (Mesh mesh in Meshes)
+        {
+            binaryWriter.WriteObjectName(mesh);
+        }
+        binaryWriter.WriteInteger(SkinnedMeshes.Count);
+        foreach (Mesh mesh in SkinnedMeshes)
+        {
+            binaryWriter.WriteObjectName(mesh);
+        }
+        binaryWriter.WriteInteger(materials.Count);
+        foreach (Material material in materials)
+        {
+            binaryWriter.WriteMaterial(material);
+        }
         binaryWriter.WriteObject(selectedObject, false);
         binaryWriter.Close();
         Debug.Log($"Single object export completed: {selectedObject.name}");

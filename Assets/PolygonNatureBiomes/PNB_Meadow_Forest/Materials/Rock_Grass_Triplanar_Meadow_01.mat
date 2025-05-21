@@ -222,7 +222,7 @@ Material:
     - _ScrollSpeedX: 0
     - _ScrollSpeedY: 0.1
     - _SideMetallic: 0
-    - _SideSmoothness: 0.2
+    - _SideSmoothness: 0
     - _Smoothness: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -231,7 +231,7 @@ Material:
     - _TilingX: 1
     - _TilingY: 1
     - _TopMetallic: 0
-    - _TopSmoothness: 0.2
+    - _TopSmoothness: 0
     - _TotalWindAmount: 0.5
     - _TrunkFlatColourSwitch: 0
     - _TrunkMetallic: 0

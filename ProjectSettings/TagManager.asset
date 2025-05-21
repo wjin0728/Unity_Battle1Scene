@@ -8,6 +8,9 @@ TagManager:
   - Light
   - Obstacle
   - UI
+  - Environment
+  - SkyDome
+  - Water
   layers:
   - Default
   - TransparentFX

@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 1353387689931149886}
   m_Layer: 0
   m_Name: SM_Env_Bush_02
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

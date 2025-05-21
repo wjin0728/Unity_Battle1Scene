@@ -186,7 +186,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0.5
+    - _AlphaClip: 1
     - _AlphaCutoff: 0.5
     - _Big_Wave: 10
     - _Big_WindAmount: 1.22

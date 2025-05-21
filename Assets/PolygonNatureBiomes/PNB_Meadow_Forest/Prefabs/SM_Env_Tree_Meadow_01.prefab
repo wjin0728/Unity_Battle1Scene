@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7768601906473230819}
-  - component: {fileID: 3284674368731141778}
   - component: {fileID: -8489133307399510447}
   m_Layer: 3
   m_Name: SM_Env_Tree_Meadow_01
@@ -118,26 +117,6 @@ Transform:
   - {fileID: 6262803070137539110}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &3284674368731141778
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954770494557141849}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.27028656, y: 5.3858852, z: -0.57857513}
-  m_Size: 17.87452
-  m_FadeMode: 1
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.008666778
-    fadeTransitionWidth: 0.1
-    renderers:
-    - renderer: {fileID: 1816582677988987078}
-    - renderer: {fileID: 8602827734002239396}
-  m_Enabled: 0
 --- !u!64 &-8489133307399510447
 MeshCollider:
   m_ObjectHideFlags: 0

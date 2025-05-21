@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionMap:
-        m_Texture: {fileID: 2800000, guid: e4c83886e423af540b2767e694d93e33, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -100,7 +100,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RipplesNormal:
-        m_Texture: {fileID: 2800000, guid: bd6f803a7aa2a134693d786c0b77bdaa, type: 3}
+        m_Texture: {fileID: 2800000, guid: 18234d0dd8e148248a2b11f182e2519a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RipplesNormal2:
@@ -128,7 +128,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaveMask:
-        m_Texture: {fileID: 2800000, guid: 796e3706ceb704247adb957915a9edaf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 95228cb87bc1fcf4b8b99b626dcf102c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaveMask1:
@@ -167,18 +167,18 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
-    - _CausticDepthFade: 11.22
-    - _CausticScale: 2.4
-    - _CausticSpeed: 1
+    - _CausticDepthFade: 0
+    - _CausticScale: 0
+    - _CausticSpeed: 0
     - _ColourNoiseScale1: 0.019
     - _Cutoff: 0.5
-    - _Depth: 2.97
+    - _Depth: 2.44
     - _DetailNormalMapScale: 1
     - _DirectLight: 0.01
-    - _Distortion: 0.026
+    - _Distortion: 0
     - _Distortion1: 0.292
-    - _DistortionSpeed: 0.073
-    - _DistortionTiling: 0.33
+    - _DistortionSpeed: 0
+    - _DistortionTiling: 2.44
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _Float4: 0.37
@@ -188,22 +188,22 @@ Material:
     - _FoamFalloff1: 0
     - _FoamGlowMultiplier: 1
     - _FoamOpacity: 1
-    - _FoamShoreline: 1
+    - _FoamShoreline: 0.701
     - _FoamSize: 5.32
     - _FoamSize1: 0.019
-    - _FoamSmoothness: 0
+    - _FoamSmoothness: 4.38
     - _FoamSmoothness1: 0
     - _FoamSpecular: 0
-    - _FoamSpread: 5.32
+    - _FoamSpread: 1.7
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GlowDepth: 0.1
+    - _GlowDepth: -0.57
     - _GlowFalloff: 0.1
     - _Metallic: 0
     - _Mode: 0
     - _NormalAmount: 0
-    - _NormalScale: 0.093
+    - _NormalScale: 0.145
     - _NormalTiling: 0.08
     - _NormalTiling2: 0.1
     - _ODM: 0.02
@@ -211,24 +211,24 @@ Material:
     - _OffsetX: 0
     - _OffsetY: 0
     - _Opacity: 1
-    - _OpacityFalloff: 5.24
-    - _OpacityMin: 0.67
+    - _OpacityFalloff: 3.34
+    - _OpacityMin: 0.771
     - _OverallFalloff: 0.4
     - _PanningSpeed: 0.1
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ReflectionPower: 0.32
+    - _ReflectionPower: 0.239
     - _RippleAmount: 1
-    - _RippleSpeed: 0.026
+    - _RippleSpeed: 0.037
     - _RippleSpeedMulti: 1
     - _ScrollSpeedX: 0
     - _ScrollSpeedY: 0.1
-    - _ShallowFalloff: 0.03
-    - _Smoothness: 2.83
+    - _ShallowFalloff: 0.5
+    - _Smoothness: 8.48
     - _SmoothnessTextureChannel: 0
-    - _Specular: 0.103
+    - _Specular: 0.353
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Tiling: 0.36
@@ -263,16 +263,16 @@ Material:
     - _Wave3DTilingTuffs: -0.18
     - _Wave3DTilingTuffs1: -0.18
     - _Wave3DTilingTufts: -0.09
-    - _WaveAmplitude: 0
+    - _WaveAmplitude: 0.119
     - _WaveDirection: 0
     - _WaveFoamOpacity: 0
-    - _WaveNoiseAmount: 2
-    - _WaveNoiseScale: 30
+    - _WaveNoiseAmount: 9.7
+    - _WaveNoiseScale: 1.86
     - _WaveSpeed: 0
     - _WaveTiling: 0.21
     - _WaveTiling1: 0.2
     - _WaveTiling2: 0.07
-    - _WaveWavelength: -0.09
+    - _WaveWavelength: 3
     - _WindEffect: 1
     - _WindNoiseScale: 0.1
     - _WindWorldScale: 0.05
@@ -311,15 +311,15 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color3: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
     - _Color4: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
-    - _DeepColour: {r: 0.14117648, g: 0.3372549, b: 0.28859416, a: 0}
+    - _DeepColour: {r: 0, g: 0.4811321, b: 0.47549462, a: 0}
     - _DepthGlowColour: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColour: {r: 0.7215686, g: 0.8078431, b: 1, a: 0}
-    - _FoamColor: {r: 0.28337973, g: 0.36862746, b: 0.21159217, a: 1}
+    - _FoamColor: {r: 0, g: 0.3207547, b: 0.23767968, a: 1}
     - _FoamColor1: {r: 0.5215687, g: 0.8980392, b: 0.8470588, a: 0}
     - _FoamEmitColour: {r: 0, g: 0, b: 0, a: 0}
-    - _ShallowColour: {r: 0.37434784, g: 0.7181783, b: 0.73800004, a: 0}
-    - _VeryDeepColour: {r: 0.12156863, g: 0.16628718, b: 0.20784314, a: 0}
+    - _ShallowColour: {r: 0, g: 0.6792453, b: 0.62861776, a: 0}
+    - _VeryDeepColour: {r: 0, g: 0.22441141, b: 0.4528302, a: 0}
     - _WaterDeepColor: {r: 0.1254902, g: 0.34117648, b: 0.15583292, a: 0}
     - _WaterDeepColor1: {r: 0.04705882, g: 0.3098039, b: 0.1960784, a: 0}
     - _WaterReallyDeepColor: {r: 0.1459713, g: 0.20784314, b: 0.11764706, a: 1}
